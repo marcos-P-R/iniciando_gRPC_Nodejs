@@ -13,5 +13,5 @@ message TaskList {
 
 service TaskService {
     rpc FindAll (Empty) returns (TaskList) {};
-    rpc create (Task) returns (Task) {};
+    rpc Insert (Task) returns (Task) {};
 }
