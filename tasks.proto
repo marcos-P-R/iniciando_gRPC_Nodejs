@@ -6,3 +6,12 @@ message Task {
     int32 id = 1;
     string title = 2;
 }
+
+message TaskList {
+    repeated Task tasks = 1;
+}
+
+service TaskService {
+    rpc FindAll (Empty) returns (TaskList) {};
+    rpc create (Task) returns (Task) {};
+}
