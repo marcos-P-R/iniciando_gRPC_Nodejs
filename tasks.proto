@@ -7,6 +7,10 @@ message Task {
     string title = 2;
 }
 
+message TaskId {
+    int32 id = 1;
+}
+
 message TaskList {
     repeated Task tasks = 1;
 }
@@ -14,4 +18,5 @@ message TaskList {
 service TaskService {
     rpc FindAll (Empty) returns (TaskList) {};
     rpc Insert (Task) returns (Task) {};
+    rpc Find (TaskId) returns (Task);
 }

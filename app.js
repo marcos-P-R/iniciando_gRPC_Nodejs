@@ -15,6 +15,17 @@ gRpcServer.addService(taskProto.TaskService.service, {
         const task = _.request;
         tasks.push(task);
         callback(null, { task });
+    },
+    find: (_, callback) => {
+        const taskId = tasks.find(el => el.id == _.request.id);
+        if (taskId) {
+            callback(null, { taskId });
+        } else {
+            callback({
+                code: grpc.status.NOT_FOUND,
+                reason: "Id does not exists"
+            });
+        }
     }
 });
 gRpcServer.bind('127.0.0.1:9000', grpc.ServerCredentials.createInsecure());
